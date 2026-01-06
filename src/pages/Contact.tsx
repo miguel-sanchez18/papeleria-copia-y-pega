@@ -1,5 +1,5 @@
 export default function Contact() {
-  const fbUrl = "https://www.facebook.com/profile.php?id=61585923629310";
+  const fbUrl = "https://www.facebook.com/profile.php?id=61586313953877";
 
   return (
     <section style={{ display: "grid", gap: 14, maxWidth: 860 }}>

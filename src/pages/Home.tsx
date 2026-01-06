@@ -10,7 +10,7 @@ export default function Home() {
           <h1 className="h1">Todo para la escuela y la oficina, con atención rápida.</h1>
 
           <p className="p">
-            En <b>Papelería Copia y Pega</b> hacemos copias e impresiones (B/N y color), engargolados, escaneos,
+            En <b>Papelería Copia & Pega</b> hacemos copias e impresiones (B/N y color), engargolados, escaneos,
             y contamos con útiles escolares y material de oficina.
           </p>
 
