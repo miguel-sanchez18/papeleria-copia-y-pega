@@ -1,4 +1,4 @@
-import { useTheme, ThemeName } from "../theme/ThemeProvider";
+import { useTheme, ThemeName } from "../app/theme/ThemeProvider";
 
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
@@ -11,9 +11,9 @@ export default function ThemeSwitcher() {
       aria-label="Cambiar tema"
       title="Cambiar tema"
     >
-      <option value="purple">Tema: Morado</option>
-      <option value="teal">Tema: Turquesa</option>
-      <option value="sunset">Tema: Atardecer</option>
+      <option value="purple" style={{ color: "black", fontWeight: "bold" }}>💜 Tema: Morado</option>
+      <option value="teal" style={{ color: "black", fontWeight: "bold" }}>🐬 Tema: Turquesa</option>
+      <option value="sunset" style={{ color: "black", fontWeight: "bold" }}>🌅 Tema: Atardecer</option>
     </select>
   );
 }
