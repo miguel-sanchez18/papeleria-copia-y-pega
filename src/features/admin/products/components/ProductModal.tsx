@@ -4,6 +4,7 @@ import { Product } from '../models/product.model';
 import { Category } from '../../categories/models/category.model';
 import { ProductService } from '../services/product.service';
 import { CategoryService } from '../../categories/services/category.service';
+import { compressImage } from '../../../../utils/imageUtils';
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -64,18 +65,17 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       
-      // Limit size to 500KB for now to be safe with serverless function limits
-      if (file.size > 500 * 1024) {
-        alert("La imagen es demasiado grande. Por favor usa una imagen menor a 500KB.");
-        return;
-      }
-
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      setLoading(true); // Show loading while compressing
+      compressImage(file)
+        .then((compressedBase64) => {
+          setImagePreview(compressedBase64);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error compressing image:", err);
+          alert("Error al procesar la imagen.");
+          setLoading(false);
+        });
     }
   };
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useToast } from '../../../../context/ToastContext';
 import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
+import { compressImage } from '../../../../utils/imageUtils';
 
 export default function UserProfile() {
   const { success, error } = useToast();
@@ -198,15 +199,14 @@ export default function UserProfile() {
                                     onChange={(e) => {
                                         const file = e.target.files?.[0];
                                         if (file) {
-                                            if (file.size > 1024 * 1024 * 2) { // 2MB limit
-                                                error("La imagen no debe pesar más de 2MB");
-                                                return;
-                                            }
-                                            const reader = new FileReader();
-                                            reader.onloadend = () => {
-                                                setProfileImage(reader.result as string);
-                                            };
-                                            reader.readAsDataURL(file);
+                                            compressImage(file)
+                                              .then((compressedBase64) => {
+                                                  setProfileImage(compressedBase64);
+                                              })
+                                              .catch((err) => {
+                                                  console.error("Error compressing image:", err);
+                                                  error("Error al procesar la imagen.");
+                                              });
                                         }
                                     }}
                                     style={{ display: 'none' }}
