@@ -106,9 +106,9 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
 
       onSuccess();
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Error al guardar el producto");
+      alert(error.message || "Error al guardar el producto");
     } finally {
       setLoading(false);
     }

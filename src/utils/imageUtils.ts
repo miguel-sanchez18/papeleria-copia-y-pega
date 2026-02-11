@@ -1,11 +1,11 @@
 /**
  * Compresses and resizes an image file to a base64 string.
  * @param file The file to compress
- * @param maxWidth Maximum width of the output image (default 800px)
- * @param quality JPEG quality from 0 to 1 (default 0.7)
+ * @param maxWidth Maximum width of the output image (default 600px)
+ * @param quality JPEG quality from 0 to 1 (default 0.6)
  * @returns Promise resolving to the base64 string
  */
-export const compressImage = (file: File, maxWidth: number = 800, quality: number = 0.7): Promise<string> => {
+export const compressImage = (file: File, maxWidth: number = 600, quality: number = 0.6): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
