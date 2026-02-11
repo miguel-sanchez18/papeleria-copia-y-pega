@@ -130,10 +130,10 @@ export default function SalesPOS() {
   );
 
   return (
-    <div style={{ display: 'flex', height: 'calc(100vh - 100px)', gap: '24px', padding: '20px' }}>
+    <div className="pos-container-responsive" style={{ display: 'flex', height: 'calc(100vh - 100px)', gap: '24px', padding: '20px' }}>
       
       {/* LEFT PANEL: CURRENT SALE (CART) */}
-      <div style={{ flex: 1, backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="pos-panel" style={{ flex: 1, backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ padding: '20px', borderBottom: '1px solid #f3f4f6', backgroundColor: '#f9fafb' }}>
           <h2 style={{ margin: 0, color: '#111827' }}>🛒 Venta Actual</h2>
         </div>
@@ -235,7 +235,7 @@ export default function SalesPOS() {
       </div>
 
       {/* RIGHT PANEL: PRODUCT CATALOG */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div className="pos-panel" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <div style={{ backgroundColor: 'white', borderRadius: '12px', padding: '16px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{ fontSize: '1.5rem' }}>🔍</span>
           <input 

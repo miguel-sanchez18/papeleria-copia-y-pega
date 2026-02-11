@@ -44,6 +44,7 @@ export default function App() {
           <Route path="/admin/login" element={<Login />} />
 
           {/* Protected Admin Routes */}
+          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
           <Route element={<AdminLayout />}>
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/products" element={<ProductList />} />

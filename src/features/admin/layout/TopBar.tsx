@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 interface TopBarProps {
   onToggleSidebar: () => void;
   isOpen: boolean;
+  isMobile: boolean;
 }
 
-export default function TopBar({ onToggleSidebar, isOpen }: TopBarProps) {
+export default function TopBar({ onToggleSidebar, isOpen, isMobile }: TopBarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -31,14 +32,16 @@ export default function TopBar({ onToggleSidebar, isOpen }: TopBarProps) {
   };
 
   return (
-    <header style={{ 
-      height: '80px', 
+    <header 
+      className="admin-topbar-responsive"
+      style={{ 
+        height: '80px', 
       backgroundColor: '#ffffff', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'space-between',
       padding: '0 24px',
-      paddingLeft: isOpen ? '24px' : '200px', // Add extra padding when sidebar is collapsed to separate toggle button from fixed header
+      paddingLeft: isMobile ? '24px' : (isOpen ? '24px' : '200px'), // Fixed padding on mobile
       borderBottom: '1px solid #eef2f6',
       transition: 'padding-left 0.3s ease',
       // borderRadius: '0 0 20px 20px' // Removed to look more standard 

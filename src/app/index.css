@@ -232,3 +232,70 @@ a:hover { color: var(--primary-2); }
   font-weight: 700;
   outline: none;
 }
+
+/* ========================================= */
+/* ADMIN RESPONSIVE UTILITIES                */
+/* ========================================= */
+
+.admin-backdrop { display: none; }
+
+/* Sidebar Mobile Overlay */
+@media (max-width: 768px) {
+  .admin-sidebar-mobile {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 50 !important;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .admin-sidebar-mobile.open {
+    transform: translateX(0);
+  }
+
+  .admin-sidebar-mobile.open .sidebar-text {
+    opacity: 1 !important;
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* Backdrop for sidebar */
+  .admin-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 40;
+    animation: fadeIn 0.3s;
+  }
+
+  /* POS Layout Stacking */
+  .pos-container-responsive {
+    flex-direction: column-reverse !important; /* Catalog top (if reversed) */
+    height: auto !important;
+    overflow-y: visible !important;
+    gap: 16px !important;
+  }
+
+  .pos-panel {
+    width: 100% !important;
+    flex: none !important;
+    height: 600px !important; /* Fixed height for panels on mobile */
+  }
+  
+  /* TopBar Padding Fix */
+  .admin-topbar-responsive {
+    padding-left: 24px !important; /* Always small padding on mobile */
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

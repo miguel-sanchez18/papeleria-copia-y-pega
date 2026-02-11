@@ -4,12 +4,16 @@ import logo from '../../../assets/logo.png';
 
 interface SidebarProps {
   isOpen: boolean;
+  isMobile?: boolean; // Optional for backward compatibility if needed, but we pass it
 }
 
-export default function Sidebar({ isOpen }: SidebarProps) {
+export default function Sidebar({ isOpen, isMobile = false }: SidebarProps) {
   const location = useLocation();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const width = isOpen ? '260px' : '80px';
+  
+  // Mobile: 100vw or fixed width. Desktop: 260px or 80px.
+  // Actually on mobile we want fixed width 260px but toggle via transform.
+  const width = isMobile ? '260px' : (isOpen ? '260px' : '80px');
 
   const menuItems = [
     { path: '/admin/dashboard', label: 'Dashboard', icon: '🏠' },
@@ -29,16 +33,21 @@ export default function Sidebar({ isOpen }: SidebarProps) {
 
   return (
     <aside 
+      className={`admin-sidebar-mobile ${isOpen ? 'open' : ''}`}
       style={{ 
         width, 
         backgroundColor: '#ffffff', 
         height: '100%', 
-        transition: 'width 0.3s ease', 
+        transition: isMobile ? 'transform 0.3s ease' : 'width 0.3s ease', 
         borderRight: '1px solid #e0e0e0',
         display: 'flex',
         flexDirection: 'column',
-        zIndex: 10,
-        position: 'relative' // Needed for tooltip positioning
+        zIndex: isMobile ? 50 : 10,
+        position: isMobile ? 'fixed' : 'relative',
+        top: 0,
+        left: 0,
+        transform: isMobile ? (isOpen ? 'translateX(0)' : 'translateX(-100%)') : 'none',
+        boxShadow: isMobile && isOpen ? '4px 0 12px rgba(0,0,0,0.1)' : 'none'
       }}
     >
       <div style={{ 
@@ -141,12 +150,13 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                   }}
                 >
                   <span style={{ fontSize: '1.2rem', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{item.icon}</span>
-                  <span style={{ 
+                  <span className="sidebar-text" style={{ 
                     whiteSpace: 'nowrap', 
                     opacity: isOpen ? 1 : 0, 
                     width: isOpen ? 'auto' : 0,
                     overflow: 'hidden',
-                    transition: 'opacity 0.2s' 
+                    transition: 'opacity 0.2s',
+                    color: isActive ? '#673ab7' : '#616161'
                   }}>
                     {item.label}
                   </span>
