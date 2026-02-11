@@ -25,7 +25,7 @@ async function seedAdmin() {
   try {
     console.log("Seeding Admin User...");
     const username = 'jmiguel.sanchez.1190@gmail.com';
-    const password = '$anchez18M';
+    const password = '1234567';
     
     // Hash password
     const salt = await bcrypt.genSalt(10);
