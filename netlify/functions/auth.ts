@@ -61,7 +61,8 @@ export default async (req: Request, context: any) => {
             username: user.username, 
             role: user.role,
             full_name: user.full_name,
-            email: user.email 
+            email: user.email,
+            profile_image: user.profile_image 
         } 
     }), {
       headers: { 
