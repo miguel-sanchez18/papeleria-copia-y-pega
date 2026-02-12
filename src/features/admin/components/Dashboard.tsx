@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InstallPWA from '../../../components/pwa/InstallPWA';
 
 export default function Dashboard() {
   const [stats, setStats] = useState<any>(null);
@@ -45,6 +46,7 @@ export default function Dashboard() {
     <div style={{ padding: '2rem', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#111827' }}>Panel Administrativo</h1>
+        <InstallPWA />
       </header>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
