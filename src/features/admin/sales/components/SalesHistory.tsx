@@ -117,7 +117,7 @@ export default function SalesHistory() {
                   <td style={{ padding: '12px 24px' }}>
                     <button 
                       onClick={() => handleSaleClick(sale)}
-                      style={{ padding: '6px 12px', borderRadius: '4px', border: '1px solid #d1d5db', background: 'white', cursor: 'pointer', fontSize: '0.875rem' }}
+                      style={{ padding: '6px 12px', borderRadius: '4px', border: '1px solid #d1d5db', background: 'white', cursor: 'pointer', fontSize: '0.875rem', color: '#000000' }}
                     >
                       Ver Detalle
                     </button>

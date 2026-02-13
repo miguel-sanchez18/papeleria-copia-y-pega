@@ -32,18 +32,18 @@ export default async (req: Request, context: any) => {
             const lowStock = await sql`SELECT * FROM products WHERE stock_quantity <= 2`;
             const recentSales = await sql`SELECT * FROM sales ORDER BY created_at DESC LIMIT 5`;
             
-            // Sales Today
+            // Sales Today (Adjusted for UTC-6 / Mexico Time)
             const salesToday = await sql`
                 SELECT COALESCE(SUM(total), 0) as total, COUNT(*) as count 
                 FROM sales 
-                WHERE created_at >= CURRENT_DATE
+                WHERE (created_at - INTERVAL '6 hours')::date = (NOW() - INTERVAL '6 hours')::date
             `;
 
-            // Sales Month
+            // Sales Month (Adjusted for UTC-6 / Mexico Time)
             const salesMonth = await sql`
                 SELECT COALESCE(SUM(total), 0) as total, COUNT(*) as count 
                 FROM sales 
-                WHERE created_at >= date_trunc('month', CURRENT_DATE)
+                WHERE date_trunc('month', created_at - INTERVAL '6 hours') = date_trunc('month', NOW() - INTERVAL '6 hours')
             `;
 
             return new Response(JSON.stringify({
